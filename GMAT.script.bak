@@ -11,32 +11,27 @@ GMAT DefaultSC.DateFormat = UTCGregorian;
 GMAT DefaultSC.Epoch = '01 Jan 2000 11:59:28.000';
 GMAT DefaultSC.CoordinateSystem = EarthICRF;
 GMAT DefaultSC.DisplayStateType = Keplerian;
-GMAT DefaultSC.SMA = 6560.999999999999;
-GMAT DefaultSC.ECC = 0.009999999999999946;
-GMAT DefaultSC.INC = 14.99999999999994;
+GMAT DefaultSC.SMA = 6561.000000000001;
+GMAT DefaultSC.ECC = 0.01000000000000018;
+GMAT DefaultSC.INC = 14.99999999999995;
 GMAT DefaultSC.RAAN = 200;
-GMAT DefaultSC.AOP = 10.00000000000327;
+GMAT DefaultSC.AOP = 10.00000000000016;
 GMAT DefaultSC.TA = 359.9999987925818;
-GMAT DefaultSC.DryMass = 6000;
+GMAT DefaultSC.DryMass = 850;
 GMAT DefaultSC.Cd = 2.2;
 GMAT DefaultSC.Cr = 1.8;
 GMAT DefaultSC.DragArea = 15;
 GMAT DefaultSC.SRPArea = 1;
-GMAT DefaultSC.SPADDragScaleFactor = 1;
-GMAT DefaultSC.SPADSRPScaleFactor = 1;
 GMAT DefaultSC.NAIFId = -10001001;
 GMAT DefaultSC.NAIFIdReferenceFrame = -9001001;
 GMAT DefaultSC.OrbitColor = Red;
 GMAT DefaultSC.TargetColor = Teal;
-GMAT DefaultSC.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
-GMAT DefaultSC.CdSigma = 1e+70;
-GMAT DefaultSC.CrSigma = 1e+70;
+GMAT DefaultSC.OrbitErrorCovariance = [ 1e+070 0 0 0 0 0 ; 0 1e+070 0 0 0 0 ; 0 0 1e+070 0 0 0 ; 0 0 0 1e+070 0 0 ; 0 0 0 0 1e+070 0 ; 0 0 0 0 0 1e+070 ];
+GMAT DefaultSC.CdSigma = 1e+070;
+GMAT DefaultSC.CrSigma = 1e+070;
 GMAT DefaultSC.Id = 'SatId';
-GMAT DefaultSC.Attitude = NadirPointing;
-GMAT DefaultSC.SPADSRPInterpolationMethod = Bilinear;
-GMAT DefaultSC.SPADSRPScaleFactorSigma = 1e+70;
-GMAT DefaultSC.SPADDragInterpolationMethod = Bilinear;
-GMAT DefaultSC.SPADDragScaleFactorSigma = 1e+70;
+GMAT DefaultSC.Attitude = CoordinateSystemFixed;
+GMAT DefaultSC.SPADSRPScaleFactor = 1;
 GMAT DefaultSC.ModelFile = 'aura.3ds';
 GMAT DefaultSC.ModelOffsetX = 0;
 GMAT DefaultSC.ModelOffsetY = 0;
@@ -47,16 +42,8 @@ GMAT DefaultSC.ModelRotationZ = 0;
 GMAT DefaultSC.ModelScale = 1;
 GMAT DefaultSC.AttitudeDisplayStateType = 'Quaternion';
 GMAT DefaultSC.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT DefaultSC.AttitudeCoordinateSystem = EarthMJ2000Eq;
 GMAT DefaultSC.EulerAngleSequence = '321';
-GMAT DefaultSC.AttitudeReferenceBody = Earth;
-GMAT DefaultSC.AttitudeConstraintType = 'Velocity';
-GMAT DefaultSC.BodyAlignmentVectorX = 1;
-GMAT DefaultSC.BodyAlignmentVectorY = 0;
-GMAT DefaultSC.BodyAlignmentVectorZ = 0;
-GMAT DefaultSC.BodyConstraintVectorX = 0;
-GMAT DefaultSC.BodyConstraintVectorY = 0;
-GMAT DefaultSC.BodyConstraintVectorZ = 1;
-
 
 
 %----------------------------------------
@@ -88,7 +75,6 @@ GMAT DefaultProp_ForceModel.Drag.F107A = 150;
 GMAT DefaultProp_ForceModel.Drag.MagneticIndex = 3;
 GMAT DefaultProp_ForceModel.Drag.SchattenErrorModel = 'Nominal';
 GMAT DefaultProp_ForceModel.Drag.SchattenTimingModel = 'NominalCycle';
-GMAT DefaultProp_ForceModel.Drag.DragModel = 'Spherical';
 
 %----------------------------------------
 %---------- Propagators
@@ -98,7 +84,7 @@ Create Propagator DefaultProp;
 GMAT DefaultProp.FM = DefaultProp_ForceModel;
 GMAT DefaultProp.Type = RungeKutta89;
 GMAT DefaultProp.InitialStepSize = 1;
-GMAT DefaultProp.Accuracy = 9.999999999999999e-12;
+GMAT DefaultProp.Accuracy = 9.999999999999999e-012;
 GMAT DefaultProp.MinStep = 0.001;
 GMAT DefaultProp.MaxStep = 27000;
 GMAT DefaultProp.MaxStepAttempts = 50;
@@ -111,13 +97,13 @@ GMAT DefaultProp.StopIfAccuracyIsViolated = true;
 Create ImpulsiveBurn LEOtoGTO;
 GMAT LEOtoGTO.CoordinateSystem = Local;
 GMAT LEOtoGTO.Origin = Earth;
-GMAT LEOtoGTO.Axes = SpacecraftBody;
+GMAT LEOtoGTO.Axes = VNB;
 GMAT LEOtoGTO.Element1 = 0;
 GMAT LEOtoGTO.Element2 = 0;
 GMAT LEOtoGTO.Element3 = 0;
 GMAT LEOtoGTO.DecrementMass = false;
 GMAT LEOtoGTO.Isp = 300;
-GMAT LEOtoGTO.GravitationalAccel = 9.81;
+GMAT LEOtoGTO.GravitationalAccel = 9.810000000000001;
 
 %----------------------------------------
 %---------- Solvers
@@ -137,9 +123,9 @@ GMAT DefaultDC.Algorithm = NewtonRaphson;
 
 Create OrbitView DefaultOrbitView;
 GMAT DefaultOrbitView.SolverIterations = Current;
-GMAT DefaultOrbitView.UpperLeft = [ 0.05176470588235294 0.007142857142857143 ];
+GMAT DefaultOrbitView.UpperLeft = [ 0.001764705882352941 0 ];
 GMAT DefaultOrbitView.Size = [ 0.5 0.45 ];
-GMAT DefaultOrbitView.RelativeZOrder = 175;
+GMAT DefaultOrbitView.RelativeZOrder = 57;
 GMAT DefaultOrbitView.Maximized = false;
 GMAT DefaultOrbitView.Add = {DefaultSC, Earth};
 GMAT DefaultOrbitView.CoordinateSystem = EarthMJ2000Eq;
@@ -169,9 +155,9 @@ GMAT DefaultOrbitView.EnableConstellations = On;
 
 Create GroundTrackPlot DefaultGroundTrackPlot;
 GMAT DefaultGroundTrackPlot.SolverIterations = Current;
-GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.001764705882352941 0.4678571428571429 ];
+GMAT DefaultGroundTrackPlot.UpperLeft = [ 0.002352941176470588 0.4940476190476191 ];
 GMAT DefaultGroundTrackPlot.Size = [ 0.52 0.4964285714285714 ];
-GMAT DefaultGroundTrackPlot.RelativeZOrder = 171;
+GMAT DefaultGroundTrackPlot.RelativeZOrder = 53;
 GMAT DefaultGroundTrackPlot.Maximized = false;
 GMAT DefaultGroundTrackPlot.Add = {DefaultSC};
 GMAT DefaultGroundTrackPlot.DataCollectFrequency = 1;
@@ -190,7 +176,7 @@ GMAT DefaultGroundTrackPlot.TextureMap = 'ModifiedBlueMarble.jpg';
 BeginMissionSequence;
 Target DefaultDC {SolveMode = Solve, ExitMode = Stop, ShowProgressWindow = true};
    Maneuver LEOtoGTO(DefaultSC);
-   Vary DefaultDC(LEOtoGTO.Element1 = 2450, {Perturbation = 0.001, Lower = -100000, Upper = 1000000, MaxStep = 1, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
+   Vary DefaultDC(LEOtoGTO.Element1 = 200, {Perturbation = 10, Lower = -100000, Upper = 1000000, MaxStep = 100, AdditiveScaleFactor = 0.0, MultiplicativeScaleFactor = 1.0});
    Achieve DefaultDC(DefaultSC.Earth.RadApo = 42157, {Tolerance = 10});
 EndTarget;  % For targeter DefaultDC
 Propagate DefaultProp(DefaultSC) {DefaultSC.Earth.Apoapsis};
