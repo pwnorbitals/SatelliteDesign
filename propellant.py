@@ -1,7 +1,7 @@
 import numpy as np
 
 Re = 6371e3
-mu = 3.96004e14 # Note sure
+mu = 3.986004e14 # Note sure
 g0 = 9.81
 
 def getVelocity(a,r):
