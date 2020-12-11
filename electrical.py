@@ -3,7 +3,7 @@
 T = 86142/(60*60)              # orbital period, seconds to change
 Psl = 1e3 
 Pslt = 2e3
-Tt = 24*60*60
+Tt = 24
 nreg = 0.93
 nbat = 0.91
 Tt_avg = 0.05* T    # Eclipse time per period, seconds
