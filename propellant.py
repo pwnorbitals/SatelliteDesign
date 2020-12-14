@@ -47,6 +47,7 @@ rp_GEO = zp_GEO + Re
 
 # compute V circular orbit 190km
 a_190 = getA(zp,za_190)
+print("a_190 in m : ", a_190)
 V_circular_190km = getVelocity(a_190,rp_GTO)
 
 # compute V GTO
