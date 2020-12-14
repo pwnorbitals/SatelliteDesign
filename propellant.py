@@ -56,7 +56,7 @@ Vp_GTO = getVelocity(a_GTO,rp_GTO)
 Va_GTO = getVelocity(a_GTO, ra_GTO)
 
 deltaV_GTO = Vp_GTO - V_circular_190km
-print("DeltaV LEO-GTO in m/s : ", round(deltaV_GTO,2))
+print("DeltaV LEO-GTO in m/s : ", round(Vp_GTO, 2), "-", round(V_circular_190km, 2), "=", round(deltaV_GTO,2))
 
 mp = getMassProp(deltaV_GTO, ISP_LEO2GTO, mi)
 print("MassProp needed in kg : ", round(mp,2))
@@ -87,15 +87,14 @@ eff_elec = 0.7
 
 deltaV_drag = 55 * 17 # 55 m/s per year * 17 years
 
-deltaV_GEO_drag = deltaV_GEO - deltaV_drag
-print("\nDeltaV GEO with drag in m/s : ", round(deltaV_GEO_drag,2))
-mp_drag_chem = getMassProp(deltaV_GEO_drag,ISP_chem, mi_GEO)
+print("\nDeltaV GEO with drag in m/s : ", round(deltaV_drag,2))
+mp_drag_chem = getMassProp(deltaV_drag,ISP_chem, mi_GEO)
 mp_desorbit_chem = getMassProp(6, ISP_chem, mi_GEO - mp_drag_chem)
 print("MassProp needed for drag comp. with chem. engine in kg : ", round(mp_drag_chem,2))
 print("MassProp needed for desorbiting with chem. engine in kg : ", round(mp_desorbit_chem, 2))
 print("Total mass prop. with chemical engine in kg : ", round(mp_drag_chem + mp_desorbit_chem,2))
 
-mp_drag_elec = getMassProp(deltaV_GEO_drag, ISP_elec, mi_GEO)
+mp_drag_elec = getMassProp(deltaV_drag, ISP_elec, mi_GEO)
 mp_desorbit_elec = getMassProp(6, ISP_elec, mi_GEO - mp_drag_elec)
 print("\nMassProp needed with elec. engine in kg : ", round(mp_drag_elec,2))
 print("MassProp needed for desorbiting with elec. engine in kg : ", round(mp_desorbit_elec, 2))
@@ -107,10 +106,3 @@ print("\nPayload mass with chem engine in kg : ", round(payload_mass_chem,2))
 print("Payload mass with chem engine in kg : ", round(payload_mass_elec,2))
 
 print("Mass diff in kg : ", round(payload_mass_elec-payload_mass_chem,2))
-
-
-
-
-
-
-
