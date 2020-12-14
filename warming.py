@@ -23,14 +23,14 @@ terrestrial_flux = (1./4.) * (solar_cst - albedo_flux)
 diameter = 2 * radius
 proj_surface = math.pi * (radius**2)
 surface = 4 * math.pi * (radius**2)
-sun_absorbtivity = np.array([0.95, 0.15, 0.30])
+absorbtivity = np.array([0.95, 0.15, 0.30])
 emissivity = np.array([0.90, 0.85, 0.03])
-solar_energy = sun_absorbtivity * proj_surface * solar_cst
+solar_energy = absorbtivity * proj_surface * solar_cst
 albedo_energy = 0
 terrestrial_energy =  0
 total_energy = np.sum([solar_energy, albedo_energy, terrestrial_energy])
 geo_temperature = (total_energy/(emissivity * 5.67e-8 * proj_surface))**(1./4.)
 
-print(solar_energy)
+
 print("total energy :", total_energy)
 print("geo temperatures :", geo_temperature)
