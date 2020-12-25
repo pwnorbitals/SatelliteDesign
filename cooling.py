@@ -13,7 +13,6 @@ print("emitted power : ", emitted_power)
 radiator_sfc = emitted_power / (o*emissivity*(max_temp**4))
 print("radiator surface : ", radiator_sfc)
 
-
 new_absorbtivity = 0.15
 new_emissivity = 0.75
 
